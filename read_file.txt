@@ -1,0 +1,9 @@
+#!/bin/bash
+#read file one line at a time
+i=1;
+FILE=file_name_list.txt
+k=1
+while read line;do
+        echo "$line"
+        ((k++))
+done < $FILE

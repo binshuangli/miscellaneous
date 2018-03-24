@@ -1,0 +1,3 @@
+# sort on two columns; the secondund one being alphanumeric. and the uniq rows
+
+cat 40kup_ld_Zns_5Ps_5kw.txt 40kup_ld_Zns_5Ps_5kw.txt2 | sort -rk1,1 -k2,2n | uniq > 40kup_ld_Zns_5Ps_5kw.uniq.txt

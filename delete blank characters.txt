@@ -1,0 +1,2 @@
+perl -lape 's/\s+//sg'
+Delete All Blank White Spaces

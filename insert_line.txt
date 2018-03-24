@@ -1,0 +1,3 @@
+The "1i" command tells sed to go to line 1 and insert the text there.
+
+sed -i '1icolumn1, column2, column3' testfile.csv

@@ -1,0 +1,1 @@
+$ awk ‘!x[$0]++’ garbage.txt

@@ -1,0 +1,3 @@
+# replace pattern using wildcard
+e.g. sed -e ’s/gi\(.*\)GL/GL/g’
+replace “gi……GL……” with “GL……”

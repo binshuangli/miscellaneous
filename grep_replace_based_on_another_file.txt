@@ -1,0 +1,3 @@
+grep -Fwf file2 file1 > out
+
+The -F option specifies plain string matching, so should be faster without having to engage the regex engine.

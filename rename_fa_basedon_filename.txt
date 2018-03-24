@@ -1,0 +1,2 @@
+#rename fasta header based on file name
+awk '/^>/ {gsub(/.fa(sta)?$/,"",FILENAME);printf(">%s\n",FILENAME);next;} {print}' input.fa

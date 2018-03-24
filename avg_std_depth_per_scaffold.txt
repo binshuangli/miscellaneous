@@ -1,0 +1,3 @@
+#Calculate stats for the read depth per scaffold.
+awk '{count[$1]+=1;sum[$1]+=$3;sumsq[$1]+=$3*$3}END{print "scaffold, length, Avg, Std"; for (a in count)print a, count[a], sum[a]/count[a],sqrt(sumsq[a]/count[a] - (sum[a]/count[a
+])**2)}' pool_WM_mecat.depth.xls > pool_WM_mecat.depth.stats

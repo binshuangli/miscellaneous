@@ -1,0 +1,7 @@
+while read -r -u 2 f1 
+do
+	while read -r -u 3 f2 && read -r -u 4 f3
+	do
+		samtools view -b $f1.sorted.bam $f3 > $f1-$f2.bam
+	done 3<90percentX_list.txt 4<90percentX_headers.txt
+done 2<bam.txt

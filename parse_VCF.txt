@@ -1,0 +1,42 @@
+use strict;
+use warnings;
+my $file=$ARGV[0]; #name of input file
+open(FILE, "$file")|| die ("Can't open $file!\n");
+my @depth;
+my $count_2L=0;
+my $count_2R=0;
+while (<FILE>) #for each line in the input file
+        {
+        my $line=$_;
+        if ($line=~m/^\#/) # skip the header lines
+                {next;}
+        else {
+                my @col=split('\t',$line);      #split column
+                if ($col[0]eq'2L'){
+                                $count_2L++;
+                                        }
+                elsif ($col[0]eq'2R'){
+                                $count_2R++;
+                                        }
+                my @dp=split(";",$col[7]);      #split DP
+                if ($dp[0]=~m/^DP=(\d+)/)       #retrieve DP for indels
+                {
+                push (@depth,$1);
+                        }
+                }
+        }
+my$dpnumber=@depth;
+my$sum=0;
+my ($min,$max);
+for (@depth) {
+        $min = $_ if !$min || $_ < $min;
+        $max = $_ if !$max || $_ > $max;
+        $sum+=$_;
+}
+close(FILE);#close input file
+my$avg=$sum/$dpnumber;
+print "the average depth is $avg.\n";
+print "the minimum is $min.\n";
+print "the maximum is $max.\n";
+print "2L:$count_2L.\n";
+print "2R:$count_2R.\n";

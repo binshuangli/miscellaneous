@@ -1,0 +1,2 @@
+#replace ^M to newline
+tr '\r' '\n' < DC_Metrorail_Ridership.mac.csv > DC_Metrorail_Ridership.unix.csv

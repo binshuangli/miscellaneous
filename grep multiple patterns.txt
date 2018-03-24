@@ -1,0 +1,4 @@
+There is no AND operator in grep. But, you can simulate AND using grep -E option.
+
+grep -E 'pattern1.*pattern2' filename
+grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename

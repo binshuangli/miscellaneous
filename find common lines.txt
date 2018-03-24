@@ -1,0 +1,5 @@
+Assme there are no duplicate lines in same files.
+
+2 means from 2 files, 3 means from 3 files.
+
+sort File* |uniq -c |sort -n

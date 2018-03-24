@@ -1,0 +1,3 @@
+samtools view -H bt_all.$1.sorted.bam > $1.header.sam
+sed "2i@RG\tID:FR\tSM:$1\tPO:FR" $1.header.sam > $1.newheader.sam
+samtools reheader $1.newheader.sam bt_all.$1.sorted.bam> bt_all.$1_reheadered.sorted.bam

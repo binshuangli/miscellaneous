@@ -1,0 +1,7 @@
+interleaving rows from different columns
+
+=INDIRECT("A"&INT(ROW()/5)+1)
+=INDIRECT("B"&INT(ROW()/5)+1)
+=INDIRECT("C"&INT(ROW()/5)+1)
+=INDIRECT("D"&INT(ROW()/5)+1)
+=INDIRECT("E"&INT(ROW()/5))

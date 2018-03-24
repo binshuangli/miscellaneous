@@ -1,0 +1,3 @@
+#read a file of lists and do grep of the input
+
+cat pbtrimmed_mapped_82k-97k.falist.txt | while read a ; do grep -A 1 $a pb_trimmed.fa>> pbtrimmed_mapped_82k-97k.fa; done

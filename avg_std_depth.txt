@@ -1,0 +1,5 @@
+#!/bin/bash
+while read -r -u 2 f1 
+do
+	samtools depth -a $f1.sorted.bam  |  awk '{sum+=$3; sumsq+=$3*$3} END { print "Average = ",sum/NR; print "Stdev = ",sqrt(sumsq/NR - (sum/NR)**2)}' >$f1.avg_depth_sd
+done 2<bam.txt

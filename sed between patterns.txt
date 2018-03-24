@@ -1,0 +1,3 @@
+extract strings between patterns
+
+sed -n '/Here/,/String/p'

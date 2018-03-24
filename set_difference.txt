@@ -1,0 +1,2 @@
+grep -Fxvf test1 test2
+#find what in test2 but not in test1

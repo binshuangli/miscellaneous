@@ -1,0 +1,7 @@
+#remove the last occurrence of / and characters followed
+sed 's/\(.*\)\/.*/\1/' pb_349773_mapped.falist.txt > pb_349773_mapped.falist
+
+#example
+m150314_135807_42153_c100790582550000001823177509091594_s1_p0/42152/0_4512/0_4512
+becomes
+m150314_135807_42153_c100790582550000001823177509091594_s1_p0/42152/0_4512
