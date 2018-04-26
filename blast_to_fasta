@@ -1,0 +1,3 @@
+#turns blast result into fasta file format
+tblastn -query g24aa.txt -subject mecat_NPmin5_pilon10.fa -outfmt '6 qseqid sseqid sseq' -threshold 1e-100 > g24aa_tblastn_mecat_NPmin5_pilon10_1e-100.txt
+awk 'BEGIN { OFS = "\n" } { print ">"$2, $3 }' g24aa_tblastn_mecat_NPmin5_pilon10_1e-100.txt > g24aa_tblastn_mecat_NPmin5_pilon10_1e-100_aa.fa
