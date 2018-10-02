@@ -1,0 +1,49 @@
+import numpy as np
+import  csv
+with open("fst_linbyline.csv","w") as f2:
+	#wr = csv.writer(f2)
+	with open("pool_FR_3biotypes_java.sync") as f:
+		def index_to_ATGC(n):
+			if n==0:
+				avg = np.mean([alfalfa_A_pc,clover_A_pc,pea_A_pc])
+				var = np.var([alfalfa_A_pc,clover_A_pc,pea_A_pc])
+			if n==1:
+				avg = np.mean([alfalfa_T_pc,clover_T_pc,pea_T_pc])
+				var = np.var([alfalfa_T_pc,clover_T_pc,pea_T_pc])
+			if n==2:
+				avg = np.mean([alfalfa_G_pc,clover_G_pc,pea_G_pc])
+				var = np.var([alfalfa_G_pc,clover_G_pc,pea_G_pc])
+			if n==3:
+				avg = np.mean([alfalfa_C_pc,clover_C_pc,pea_C_pc])
+				var = np.var([alfalfa_C_pc,clover_C_pc,pea_C_pc])
+			if avg*(1-avg) == 0:
+				fst ='NA'
+			else:
+				fst = var/(avg*(1-avg))
+			return avg,var,fst
+		for line in f:
+			newline = line.rstrip('\n').split('\t')
+			scaffold = newline[0]
+			position = newline[1]
+			newline_alfalfa = newline[3].split(":")
+			#print (list(map(int, newline[3].split(":"))))
+			alfalfa_A,alfalfa_T,alfalfa_G,alfalfa_C,alfalfa_N,alfalfa_del = list(map(int, newline[3].split(":")))
+			clover_A,clover_T,clover_G,clover_C,clover_N,clover_del = list(map(int, newline[4].split(":")))
+			pea_A,pea_T,pea_G,pea_C,pea_N,pea_del = list(map(int, newline[5].split(":")))
+			alfalfa_ATGC = alfalfa_A + alfalfa_T + alfalfa_G + alfalfa_C
+			clover_ATGC = clover_A + clover_T + clover_G + clover_C
+			pea_ATGC = pea_A + pea_T + pea_G + pea_C
+			if alfalfa_ATGC >= 10 and clover_ATGC >= 10 and pea_ATGC>=10:
+				alfalfa_A_pc, alfalfa_T_pc, alfalfa_G_pc, alfalfa_C_pc = alfalfa_A/alfalfa_ATGC, alfalfa_T/alfalfa_ATGC, alfalfa_G/alfalfa_ATGC, alfalfa_C/alfalfa_ATGC
+				clover_A_pc, clover_T_pc, clover_G_pc, clover_C_pc = clover_A/clover_ATGC, clover_T/clover_ATGC, clover_G/clover_ATGC, clover_C/clover_ATGC
+				pea_A_pc, pea_T_pc, pea_G_pc, pea_C_pc = pea_A/pea_ATGC, pea_T/pea_ATGC, pea_G/pea_ATGC, pea_C/pea_ATGC
+				major_allele_index = np.argsort([alfalfa_A_pc, alfalfa_T_pc, alfalfa_G_pc, alfalfa_C_pc])[::-1][0]
+				minor_allele_index = np.argsort([alfalfa_A_pc, alfalfa_T_pc, alfalfa_G_pc, alfalfa_C_pc])[::-1][1]
+				major_avg, major_var, major_fst = index_to_ATGC(major_allele_index)
+				minor_avg, minor_var, minor_fst = index_to_ATGC(minor_allele_index)
+				if major_fst == 'NA' or minor_fst == 'NA':
+					pass
+				else:
+					result = [scaffold,",",position,",",str(major_avg),",", str(major_var),",", str(major_fst),",",str(minor_avg),",",str(minor_var),",", str(minor_fst)]
+					f2.writelines(result)
+					f2.write('\n')
