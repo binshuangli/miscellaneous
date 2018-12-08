@@ -1,0 +1,4 @@
+find . -type f -name '*.txt'  -exec sed -i '' s/this/that/ {} +
+
+https://stackoverflow.com/questions/9704020/recursive-search-and-replace-in-text-files-on-mac-and-linux
+#sed takes the argument after -i as the extension for backups. Provide an empty string (-i '') for no backups.
