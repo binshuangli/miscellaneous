@@ -1,0 +1,2 @@
+ #extract sepecifc fasta sequence based on header
+ awk '/^>/{N=0} /utg000342/{N=1} {if(N)print}' xxxxxx.fa
